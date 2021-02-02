@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
@@ -7,6 +7,12 @@ jobs:
       - checkout
       - run: npm install
       - run: npm test
+      - when:
+          condition: 
+            equal: [main, << pipeline.git.branch >>]
+          steps:
+            -run: echo "this is branch main!"
+      - run: echo "done building."
   deploy:
     docker:
       - image: buildpack-deps:trusty
@@ -25,6 +31,4 @@ workflows:
       - deploy:
           requires:
             - build
-          filters:
-            branches:
-              only: main
+            when: equal: [ main, << pipeline.git.branch >> ]
