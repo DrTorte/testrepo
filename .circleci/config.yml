@@ -13,7 +13,7 @@ jobs:
     steps:
       - run:
           name: Hello
-          command: echo Hey there!
+          command: echo Hey there!!
       - when: 
           condition: 
             equal: [main, << pipeline.git.branch >>] 
