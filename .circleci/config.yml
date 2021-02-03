@@ -25,7 +25,8 @@ jobs:
                   git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git main
       - when: 
           condition: 
-            not: [main, << pipeline.git.branch >>] 
+            not: 
+              equal: [main, << pipeline.git.branch >>] 
           steps:
             - run:
                 name: Say hi
