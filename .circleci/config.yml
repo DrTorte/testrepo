@@ -23,9 +23,16 @@ jobs:
                 name: Deploy Main to Heroku
                 command: |
                   git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git main
+      - when: 
+          condition: 
+            not: [main, << pipeline.git.branch >>] 
+          steps:
+            - run:
+                name: Say hi
+                command:  echo "You got to the not-main branch step"
 
 workflows:
-  version: 2
+  version: 2.1
   build-deploy:
     jobs:
       - build
