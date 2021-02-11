@@ -39,5 +39,6 @@ workflows:
   build-deploy:
     jobs:
       - build
-        context: rawr
+          context: 
+            - rawr
       - deploy
