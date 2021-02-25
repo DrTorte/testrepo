@@ -15,7 +15,7 @@ jobs:
     steps:
       - run:
           name: Hello
-          command: echo Hey there! Var: ${MY_ENV_VAR}
+          command: echo "Hey there! Var ${MY_ENV_VAR}"
       - when: 
           condition: 
             equal: [main, << pipeline.git.branch >>] 
